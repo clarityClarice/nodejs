@@ -69,7 +69,15 @@ server.post('/projects/:id/tasks', (req, res) => {
 })
 
 
+server.put('/projects/:id', (req, res) => {
+    const { id } = req.params
+    const { title } = req.body
 
+    const index = projects.findIndex(project => project.id == id)
+    projects[index].title = title
+    
+    return res.json(projects[index])
+})
 
 server.delete('/projects/:id', (req, res) => {
     const { id } = req.params
